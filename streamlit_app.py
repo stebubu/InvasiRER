@@ -55,29 +55,25 @@ def run_computation(weight_list, value_list, df):
     pd.DataFrame(zip(*prefs), columns=['Score'], index=a).round(3)
 
 def main():
-    st.title("Streamlit App for CSV Processing")
+    st.title("Streamlit App for CSV Processing and Data Visualization")
 
-    # Step 1: Upload CSV file
     uploaded_file = st.file_uploader("Choose a CSV file", type="csv")
     if uploaded_file is not None:
-        # Step 2: Visualizing it as a table
         df = pd.read_csv(uploaded_file)
         st.write("CSV File Content:")
         st.dataframe(df)
 
-        # Step 3: Inserting a list of 9 weight values
         weights = st.text_input("Enter 9 weight values separated by comma", "")
         try:
             weight_list = [float(x.strip()) for x in weights.split(",") if x]
             if len(weight_list) != 9:
                 st.error("Please enter exactly 9 weight values.")
             else:
-                # Step 4: Inserting a list of 9 values
                 values = st.text_input("Enter 9 values separated by comma", "")
                 value_list = [float(x.strip()) for x in values.split(",") if x]
                 if len(value_list) != 9:
                     st.error("Please enter exactly 9 values.")
-               else:
+                else:
                     if st.button("Run Computation"):
                         # Simulate running your computation and generating a DataFrame with a 'score' column
                         df_result = run_computation(weight_list, value_list, df)
@@ -97,7 +93,6 @@ def main():
                         ax.set_ylabel('Frequency')
                         st.pyplot(fig)
 
-       
         except ValueError:
             st.error("Please enter valid numbers.")
 

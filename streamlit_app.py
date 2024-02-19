@@ -15,7 +15,7 @@ from pymcdm.helpers import rankdata, rrankdata
 
 def run_computation(weight_list, value_list, df):
     weights_geco=weight_list
-    type=value_list
+    types=value_list
     alts = df[df.columns[1:]].to_numpy()
 
     # Define list with several weighting methods

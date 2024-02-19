@@ -64,9 +64,9 @@ def plot_score_histogram(df_sorted):
     # Iterate through the rows of your DataFrame, coloring each bar based on 'score' value
     for index, row in df_sorted.iterrows():
         color = 'red'  # Default color for values below 0.5
-        if row['score'] > 0.6:
+        if row['Score'] > 0.6:
             color = 'green'
-        elif row['score'] >= 0.5:
+        elif row['Score'] >= 0.5:
             color = 'yellow'
         ax.bar(row['Alternative'], row['Score'], color=color)
     

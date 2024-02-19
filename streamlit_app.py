@@ -11,6 +11,48 @@ from pymcdm.helpers import rankdata, rrankdata
 # along with a DataFrame and returns some result. You need to adjust this according to your actual code.
 # from computational_code import run_computation
 
+
+
+def run_computation(weight_list, value_list, df):
+    weights_geco=weight_list
+    type=value_list
+    alts = df[df.columns[1:]].to_numpy()
+
+    # Define list with several weighting methods
+    weighting_methods = [
+    w.equal_weights,
+    w.entropy_weights,
+    w.standard_deviation_weights,
+    w.gini_weights
+    ]
+
+    # To use the COMET method, we need to define characteristic values.
+    # It could be achieved using `make_cvalues` static method of a COMET object.
+    # Alternatively, characteristic values should be provided by an expert.
+    c = COMET.make_cvalues(alts)
+
+
+    # COMET method also uses a rate function to rate characteristic objects.
+    # To automatize the process, `topsis_rate_function` could be used.
+    #rate_function = COMET.topsis_rate_function(weights, types)
+
+    # A similar thing should be done for the SPOTIS method. For this method decision
+    # bounds should be provided. Bounds could be defined by a decision maker or
+    # calculated automatically from the data.
+    bounds = SPOTIS.make_bounds(alts)
+    prefs = []
+    ranks = []
+    #geco pesi
+    method= TOPSIS()
+    pref = method(alts, weights_geco, types, bounds=bounds)
+    rank = method.rank(pref)
+    
+    prefs.append(pref)
+    ranks.append(rank)
+    a = [f'$A_{{{i+1}}}$' for i in range(len(prefs[0]))]
+
+    pd.DataFrame(zip(*prefs), columns=['Score'], index=a).round(3)
+
 def main():
     st.title("Streamlit App for CSV Processing")
 
@@ -38,7 +80,7 @@ def main():
                     # Step 5: Running a computational code with specific libraries
                     if st.button("Run Computation"):
                         # Ensure your computational function and necessary libraries are correctly imported
-                        # result = run_computation(weight_list, value_list, df)
+                        result = run_computation(weight_list, value_list, df)
                         # Simulating a computational result for demonstration
                         result = "Computed Result Placeholder"
                         st.success(f"Computation Result: {result}")

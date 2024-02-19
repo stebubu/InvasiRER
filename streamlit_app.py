@@ -1,5 +1,6 @@
 import streamlit as st
 import pandas as pd
+import numpy as np
 
 import pymcdm
 from pymcdm.methods import TOPSIS, MABAC, COMET, SPOTIS

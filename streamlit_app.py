@@ -83,7 +83,8 @@ def main():
                        
 
                         # Sorting the DataFrame by 'score' in descending order
-                        df_sorted = df_result.sort_values(by="Score", ascending=False)
+                        #df_sorted = df_result.sort_values(by="Score", ascending=False)
+                        df_sorted=df_result
                         st.write("Results (sorted by score):")
                         st.dataframe(df_sorted)
 

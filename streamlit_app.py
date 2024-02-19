@@ -1,6 +1,11 @@
 import streamlit as st
 import pandas as pd
 
+import pymcdm
+from pymcdm.methods import TOPSIS, MABAC, COMET, SPOTIS
+from pymcdm import weights as w
+from pymcdm.helpers import rankdata, rrankdata
+
 # Assuming your computational code is in a separate file named 'computational_code.py'
 # and there is a function called 'run_computation' that takes two lists (weights and values)
 # along with a DataFrame and returns some result. You need to adjust this according to your actual code.

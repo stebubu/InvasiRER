@@ -67,13 +67,13 @@ def main():
         st.write("CSV File Content:")
         st.dataframe(df)
 
-        weights = st.text_input("Enter 9 weight values separated by comma", "")
+        weights = st.text_input("Enter 9 weight values separated by comma ex. 0.46,0.13,0.11,0.13,0.02,0.02,0.015,0.02,0.1", "")
         try:
             weight_list = [float(x.strip()) for x in weights.split(",") if x]
             if len(weight_list) != 9:
                 st.error("Please enter exactly 9 weight values.")
             else:
-                values = st.text_input("Enter 9 values separated by comma", "")
+                values = st.text_input("Enter 9 suitability [1=suitable] [-1=non suitable] values separated by comma ex. 1, 1, 1, 1, -1, -1, 1, -1, 1", "")
                 value_list = [float(x.strip()) for x in values.split(",") if x]
                 if len(value_list) != 9:
                     st.error("Please enter exactly 9 values.")

@@ -80,8 +80,7 @@ def main():
                     if st.button("Run Computation"):
                         # Simulate running your computation and generating a DataFrame with a 'score' column
                         df_result = run_computation(weight_list, value_list, df)
-                        # Placeholder for demonstration purposes:
-                        df_result = pd.DataFrame({"score": [x * 1.5 for x in range(10)]})
+                       
 
                         # Sorting the DataFrame by 'score' in descending order
                         df_sorted = df_result.sort_values(by="score", ascending=False)

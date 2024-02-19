@@ -85,17 +85,24 @@ def main():
 
                         # Sorting the DataFrame by 'score' in descending order
                         df_sorted = df_result.sort_values(by="Score", ascending=False)
+                        
+                        # Renaming index for visualization
+                        df_sorted.index.name = "Alternative"
+                        df_sorted.reset_index(inplace=True)
+                        
                         #df_sorted=df_result
                         st.write("Results (sorted by score):")
                         st.dataframe(df_sorted)
 
-                        # Plotting a histogram of the 'score' column
+                        # Plotting a bar plot with 'Alternative' as X and 'score' as Y
                         fig, ax = plt.subplots()
-                        df_sorted['Score'].plot(kind='hist', ax=ax, bins=10, alpha=0.7)
-                        ax.set_title('Histogram of Scores')
-                        ax.set_xlabel('Score')
-                        ax.set_ylabel('Frequency')
+                        df_sorted.plot(kind='bar', x='Alternative', y='score', ax=ax, legend=False)
+                        ax.set_title('Score by Alternative')
+                        ax.set_xlabel('Alternative')
+                        ax.set_ylabel('Score')
                         st.pyplot(fig)
+                        
+                        
 
         except ValueError:
             st.error("Please enter valid numbers.")

@@ -68,7 +68,7 @@ def plot_score_histogram(df_sorted):
             color = 'green'
         elif row['score'] >= 0.5:
             color = 'yellow'
-        ax.bar(row['Alternative'], row['score'], color=color)
+        ax.bar(row['Alternative'], row['Score'], color=color)
     
     ax.set_title('Score by Alternative')
     ax.set_xlabel('Alternative')

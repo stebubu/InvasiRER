@@ -54,7 +54,8 @@ def run_computation(weight_list, value_list, df):
     ranks.append(rank)
     a = [f'$A_{{{i+1}}}$' for i in range(len(prefs[0]))]
 
-    pd.DataFrame(zip(*prefs), columns=['Score'], index=a).round(3)
+    results=pd.DataFrame(zip(*prefs), columns=['Score'], index=a).round(3)
+    return results
 
 def main():
     st.title("Streamlit App for CSV Processing and Data Visualization")

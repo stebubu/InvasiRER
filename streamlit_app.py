@@ -77,14 +77,27 @@ def main():
                 value_list = [float(x.strip()) for x in values.split(",") if x]
                 if len(value_list) != 9:
                     st.error("Please enter exactly 9 values.")
-                else:
-                    # Step 5: Running a computational code with specific libraries
+               else:
                     if st.button("Run Computation"):
-                        # Ensure your computational function and necessary libraries are correctly imported
-                        result = run_computation(weight_list, value_list, df)
-                        # Simulating a computational result for demonstration
-                        result = "Computed Result Placeholder"
-                        st.success(f"Computation Result: {result}")
+                        # Simulate running your computation and generating a DataFrame with a 'score' column
+                        df_result = run_computation(weight_list, value_list, df)
+                        # Placeholder for demonstration purposes:
+                        df_result = pd.DataFrame({"score": [x * 1.5 for x in range(10)]})
+
+                        # Sorting the DataFrame by 'score' in descending order
+                        df_sorted = df_result.sort_values(by="score", ascending=False)
+                        st.write("Results (sorted by score):")
+                        st.dataframe(df_sorted)
+
+                        # Plotting a histogram of the 'score' column
+                        fig, ax = plt.subplots()
+                        df_sorted['score'].plot(kind='hist', ax=ax, bins=10, alpha=0.7)
+                        ax.set_title('Histogram of Scores')
+                        ax.set_xlabel('Score')
+                        ax.set_ylabel('Frequency')
+                        st.pyplot(fig)
+
+       
         except ValueError:
             st.error("Please enter valid numbers.")
 

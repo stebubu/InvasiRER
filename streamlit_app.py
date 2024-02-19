@@ -96,7 +96,7 @@ def main():
 
                         # Plotting a bar plot with 'Alternative' as X and 'score' as Y
                         fig, ax = plt.subplots()
-                        df_sorted.plot(kind='bar', x='Alternative', y='score', ax=ax, legend=False)
+                        df_sorted.plot(kind='bar', x='Alternative', y='Score', ax=ax, legend=False)
                         ax.set_title('Score by Alternative')
                         ax.set_xlabel('Alternative')
                         ax.set_ylabel('Score')

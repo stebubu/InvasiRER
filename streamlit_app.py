@@ -57,6 +57,23 @@ def run_computation(weight_list, value_list, df):
     results=pd.DataFrame(zip(*prefs), columns=['Score'], index=a).round(3)
     return results
 
+# This function is part of your main app function or wherever the plotting is triggered
+def plot_score_histogram(df_sorted):
+    fig, ax = plt.subplots()
+    
+    # Iterate through the rows of your DataFrame, coloring each bar based on 'score' value
+    for index, row in df_sorted.iterrows():
+        color = 'red'  # Default color for values below 0.5
+        if row['score'] > 0.6:
+            color = 'green'
+        elif row['score'] >= 0.5:
+            color = 'yellow'
+        ax.bar(row['Alternative'], row['score'], color=color)
+    
+    ax.set_title('Score by Alternative')
+    ax.set_xlabel('Alternative')
+    ax.set_ylabel('Score')
+    st.pyplot(fig)
 
 def main():
 
@@ -106,6 +123,10 @@ def main():
                         ax.set_xlabel('Alternative')
                         ax.set_ylabel('Score')
                         st.pyplot(fig)
+
+                        plot_score_histogram(df_sorted)
+
+        
                         
                         
 

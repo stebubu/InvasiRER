@@ -83,13 +83,13 @@ def main():
                        
 
                         # Sorting the DataFrame by 'score' in descending order
-                        df_sorted = df_result.sort_values(by="score", ascending=False)
+                        df_sorted = df_result.sort_values(by="Score", ascending=False)
                         st.write("Results (sorted by score):")
                         st.dataframe(df_sorted)
 
                         # Plotting a histogram of the 'score' column
                         fig, ax = plt.subplots()
-                        df_sorted['score'].plot(kind='hist', ax=ax, bins=10, alpha=0.7)
+                        df_sorted['Score'].plot(kind='hist', ax=ax, bins=10, alpha=0.7)
                         ax.set_title('Histogram of Scores')
                         ax.set_xlabel('Score')
                         ax.set_ylabel('Frequency')

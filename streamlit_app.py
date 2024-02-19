@@ -59,7 +59,12 @@ def run_computation(weight_list, value_list, df):
 
 
 def main():
-    st.title("Streamlit App for CSV Processing and Data Visualization")
+
+    # Assuming 'logo.png' is the logo image file in the same directory as your Streamlit app
+    #logo_path = "logo.png"  # Or use a URL to an image: "https://example.com/logo.png"
+    #st.image(logo_path, width=100)  # Adjust the width as necessary
+
+    st.title("Analisi MCA per raking di idoneità alla laminazione invasi - RER")
 
     uploaded_file = st.file_uploader("Choose a CSV file", type="csv")
     if uploaded_file is not None:

@@ -165,6 +165,15 @@ def main():
                        
                         #plot_score_histogram(df_sorted)
                         plot_score_histogram_web(df_sorted)
+
+                        # Generate the download button
+                        csv = convert_df_to_csv(df_sorted)  # Convert the DataFrame to CSV
+                        st.download_button(
+                            label="Download DataFrame as CSV",
+                            data=csv,
+                            file_name='df_sorted.csv',
+                            mime='text/csv',
+                        )
     
         
                         

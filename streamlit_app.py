@@ -106,12 +106,7 @@ def main():
         st.dataframe(df)
 
         
-if st.button("Update DataFrame"):
-    if new_value.isdigit():  # Basic validation to check if entered value is numeric
-        new_value = float(new_value)  # Convert to float to handle numeric columns
-    df.at[row_to_edit, col_to_edit] = new_value
-    st.success("DataFrame updated!")
-    st.dataframe(df)  # Display the updated DataFrame   
+# Display the updated DataFrame   
 
 if st.button("Update DataFrame"):
     if new_value.isdigit():  # Basic validation to check if entered value is numeric

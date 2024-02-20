@@ -134,14 +134,7 @@ def main():
                         st.write("Results (sorted by score):")
                         st.dataframe(df_sorted)
 
-                        # Plotting a bar plot with 'Alternative' as X and 'score' as Y
-                        fig, ax = plt.subplots()
-                        df_sorted.plot(kind='bar', x='Alternative', y='Score', ax=ax, legend=False)
-                        ax.set_title('Score by Alternative')
-                        ax.set_xlabel('Alternative')
-                        ax.set_ylabel('Score')
-                        st.pyplot(fig)
-
+                       
                         #plot_score_histogram(df_sorted)
                         plot_score_histogram_web(df_sorted)
 

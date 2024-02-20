@@ -88,7 +88,7 @@ import plotly.express as px
 
 def plot_score_histogram_web(df_sorted):
     # Assign colors based on 'score' values
-    df_sorted['color'] = df_sorted['Score'].apply(lambda x: 'green' if x > 0.6 else ('yellow' if x >= 0.5 else 'red'))
+    df_sorted['color'] = df_sorted['Score'].apply(lambda x: 'green' if x > 0.7 else ('yellow' if x >= 0.6 else 'red'))
     
     # Create an interactive bar chart using Plotly Express
     fig = px.bar(df_sorted, x='Alternative', y='Score',

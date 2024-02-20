@@ -76,6 +76,21 @@ def plot_score_histogram(df_sorted):
     ax.set_ylabel('Score')
     st.pyplot(fig)
 
+import plotly.express as px
+
+def plot_score_histogram_web(df_sorted):
+    # Assign colors based on 'score' values
+    df_sorted['color'] = df_sorted['score'].apply(lambda x: 'green' if x > 0.6 else ('yellow' if x >= 0.5 else 'red'))
+    
+    # Create an interactive bar chart using Plotly Express
+    fig = px.bar(df_sorted, x='Alternative', y='score',
+                 color='color', color_discrete_map={'red': 'red', 'yellow': 'yellow', 'green': 'green'},
+                 labels={'score': 'Score', 'Alternative': 'Alternative'},
+                 title='Score by Alternative')
+    fig.update_traces(marker_line_width=0)  # Remove lines around bars for cleaner look
+    fig.update_layout(showlegend=False)  # Optionally hide the legend if color explanation is not required
+    st.plotly_chart(fig, use_container_width=True)
+
 def main():
 
     # Assuming 'logo.png' is the logo image file in the same directory as your Streamlit app
@@ -128,6 +143,7 @@ def main():
                         st.pyplot(fig)
 
                         plot_score_histogram(df_sorted)
+                        plot_score_histogram_web(df_sorted)
 
         
                         

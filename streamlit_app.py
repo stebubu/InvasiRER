@@ -1,3 +1,4 @@
+
 import streamlit as st
 import pandas as pd
 import numpy as np
@@ -81,21 +82,23 @@ def main():
     #logo_path = "logo.png"  # Or use a URL to an image: "https://example.com/logo.png"
     #st.image(logo_path, width=100)  # Adjust the width as necessary
 
-    st.title("Analisi MCA per raking di idoneità alla laminazione invasi - RER")
+    st.title("Analisi MCA-TOPSIS per raking di idoneità alla laminazione invasi - RER - www.gecosistema.com - stefano.bagli@gecosistema.com")
 
-    uploaded_file = st.file_uploader("Choose a CSV file", type="csv")
+    uploaded_file = st.file_uploader("Selezione il CSV file con i valori dei 9 indicatori", type="csv")
     if uploaded_file is not None:
         df = pd.read_csv(uploaded_file)
         st.write("CSV File Content:")
         st.dataframe(df)
-
-        weights = st.text_input("Enter 9 weight values separated by comma ex. 0.46,0.13,0.11,0.13,0.02,0.02,0.015,0.02,0.1", "")
+        default_weights = "0.46,0.13,0.11,0.13,0.02,0.02,0.015,0.02,0.1"
+        weights = st.text_input("Inserisci 9 pesi per ciasuni dei criteri", default_weights)
+        #weights = st.text_input("Enter 9 weight values separated by comma ex. 0.46,0.13,0.11,0.13,0.02,0.02,0.015,0.02,0.1", "")
         try:
             weight_list = [float(x.strip()) for x in weights.split(",") if x]
             if len(weight_list) != 9:
                 st.error("Please enter exactly 9 weight values.")
             else:
-                values = st.text_input("Enter 9 suitability [1=suitable] [-1=non suitable] values separated by comma ex. 1, 1, 1, 1, -1, -1, 1, -1, 1", "")
+                default_values = "1, 1, 1, 1, -1, -1, 1, -1, 1"
+                values = st.text_input("Inserisci 9 valorei di propensione  [1=suitable] [-1=non suitable]  ", default_values)
                 value_list = [float(x.strip()) for x in values.split(",") if x]
                 if len(value_list) != 9:
                     st.error("Please enter exactly 9 values.")

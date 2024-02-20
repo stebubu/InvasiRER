@@ -105,6 +105,19 @@ def main():
         st.write("CSV File Content:")
         st.dataframe(df)
 
+        # Editing functionality
+        st.write("Edit Your DataFrame:")
+        col_to_edit = st.selectbox("Select the column to edit:", df.columns)
+        row_to_edit = st.number_input("Select the row to edit:", min_value=0, max_value=len(df)-1, value=0)
+        new_value = st.text_input("Enter the new value:")
+        
+        if st.button("Update DataFrame"):
+            if new_value.isdigit():  # Basic validation to check if entered value is numeric
+                new_value = float(new_value)  # Convert to float to handle numeric columns
+            df.at[row_to_edit, col_to_edit] = new_value
+            st.success("DataFrame updated!")
+            st.dataframe(df)  # Display the updated DataFrame
+
         
 # Display the updated DataFrame   
 

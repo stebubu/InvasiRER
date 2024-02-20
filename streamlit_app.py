@@ -83,7 +83,7 @@ def plot_score_histogram_web(df_sorted):
     df_sorted['color'] = df_sorted['score'].apply(lambda x: 'green' if x > 0.6 else ('yellow' if x >= 0.5 else 'red'))
     
     # Create an interactive bar chart using Plotly Express
-    fig = px.bar(df_sorted, x='Alternative', y='score',
+    fig = px.bar(df_sorted, x='Alternative', y='Score',
                  color='color', color_discrete_map={'red': 'red', 'yellow': 'yellow', 'green': 'green'},
                  labels={'score': 'Score', 'Alternative': 'Alternative'},
                  title='Score by Alternative')
@@ -113,7 +113,7 @@ def main():
                 st.error("Please enter exactly 9 weight values.")
             else:
                 default_values = "1, 1, 1, 1, -1, -1, 1, -1, 1"
-                values = st.text_input("Inserisci 9 valorei di propensione  [1=suitable] [-1=non suitable]  ", default_values)
+                values = st.text_input("Inserisci 9 valori di propensione  [1=suitable] [-1=non suitable]  ", default_values)
                 value_list = [float(x.strip()) for x in values.split(",") if x]
                 if len(value_list) != 9:
                     st.error("Please enter exactly 9 values.")
@@ -142,7 +142,7 @@ def main():
                         ax.set_ylabel('Score')
                         st.pyplot(fig)
 
-                        plot_score_histogram(df_sorted)
+                        #plot_score_histogram(df_sorted)
                         plot_score_histogram_web(df_sorted)
 
         

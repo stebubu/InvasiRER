@@ -119,46 +119,46 @@ if st.button("Update DataFrame"):
     df.at[row_to_edit, col_to_edit] = new_value
     st.success("DataFrame updated!")
     st.dataframe(df)  # Display the updated DataFrame
-        default_weights = "0.46,0.13,0.11,0.13,0.02,0.02,0.015,0.02,0.1"
-        weights = st.text_input("Inserisci 9 pesi per ciasuni dei criteri", default_weights)
-        #weights = st.text_input("Enter 9 weight values separated by comma ex. 0.46,0.13,0.11,0.13,0.02,0.02,0.015,0.02,0.1", "")
-        try:
-            weight_list = [float(x.strip()) for x in weights.split(",") if x]
-            if len(weight_list) != 9:
-                st.error("Please enter exactly 9 weight values.")
+    default_weights = "0.46,0.13,0.11,0.13,0.02,0.02,0.015,0.02,0.1"
+    weights = st.text_input("Inserisci 9 pesi per ciasuni dei criteri", default_weights)
+    #weights = st.text_input("Enter 9 weight values separated by comma ex. 0.46,0.13,0.11,0.13,0.02,0.02,0.015,0.02,0.1", "")
+    try:
+        weight_list = [float(x.strip()) for x in weights.split(",") if x]
+        if len(weight_list) != 9:
+            st.error("Please enter exactly 9 weight values.")
+        else:
+            default_values = "1, 1, 1, 1, -1, -1, 1, -1, 1"
+            values = st.text_input("Inserisci 9 valori di propensione  [1=suitable] [-1=non suitable]  ", default_values)
+            value_list = [float(x.strip()) for x in values.split(",") if x]
+            if len(value_list) != 9:
+                st.error("Please enter exactly 9 values.")
             else:
-                default_values = "1, 1, 1, 1, -1, -1, 1, -1, 1"
-                values = st.text_input("Inserisci 9 valori di propensione  [1=suitable] [-1=non suitable]  ", default_values)
-                value_list = [float(x.strip()) for x in values.split(",") if x]
-                if len(value_list) != 9:
-                    st.error("Please enter exactly 9 values.")
-                else:
-                    if st.button("Run Computation"):
-                        # Simulate running your computation and generating a DataFrame with a 'score' column
-                        df_result = run_computation(weight_list, value_list, df)
-                       
+                if st.button("Run Computation"):
+                    # Simulate running your computation and generating a DataFrame with a 'score' column
+                    df_result = run_computation(weight_list, value_list, df)
+                   
 
-                        # Sorting the DataFrame by 'score' in descending order
-                        df_sorted = df_result.sort_values(by="Score", ascending=False)
-                        
-                        # Renaming index for visualization
-                        df_sorted.index.name = "Alternative"
-                        df_sorted.reset_index(inplace=True)
-                        
-                        #df_sorted=df_result
-                        st.write("Results (sorted by score):")
-                        st.dataframe(df_sorted)
+                    # Sorting the DataFrame by 'score' in descending order
+                    df_sorted = df_result.sort_values(by="Score", ascending=False)
+                    
+                    # Renaming index for visualization
+                    df_sorted.index.name = "Alternative"
+                    df_sorted.reset_index(inplace=True)
+                    
+                    #df_sorted=df_result
+                    st.write("Results (sorted by score):")
+                    st.dataframe(df_sorted)
 
-                       
-                        #plot_score_histogram(df_sorted)
-                        plot_score_histogram_web(df_sorted)
+                   
+                    #plot_score_histogram(df_sorted)
+                    plot_score_histogram_web(df_sorted)
 
-        
-                        
-                        
+    
+                    
+                    
 
-        except ValueError:
-            st.error("Please enter valid numbers.")
+    except ValueError:
+        st.error("Please enter valid numbers.")
 
 if __name__ == "__main__":
     main()

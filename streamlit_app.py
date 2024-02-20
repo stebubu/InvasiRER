@@ -104,6 +104,27 @@ def main():
         df = pd.read_csv(uploaded_file)
         st.write("CSV File Content:")
         st.dataframe(df)
+
+        # Editing functionality
+    # Editing functionality
+    st.write("Edit Your DataFrame:")
+    col_to_edit = st.selectbox("Select the column to edit:", df.columns)
+    row_to_edit = st.number_input("Select the row to edit:", min_value=0, max_value=len(df)-1, value=0)
+    new_value = st.text_input("Enter the new value:")
+
+if st.button("Update DataFrame"):
+    if new_value.isdigit():  # Basic validation to check if entered value is numeric
+        new_value = float(new_value)  # Convert to float to handle numeric columns
+    df.at[row_to_edit, col_to_edit] = new_value
+    st.success("DataFrame updated!")
+    st.dataframe(df)  # Display the updated DataFrame   
+
+if st.button("Update DataFrame"):
+    if new_value.isdigit():  # Basic validation to check if entered value is numeric
+        new_value = float(new_value)  # Convert to float to handle numeric columns
+    df.at[row_to_edit, col_to_edit] = new_value
+    st.success("DataFrame updated!")
+    st.dataframe(df)  # Display the updated DataFrame
         default_weights = "0.46,0.13,0.11,0.13,0.02,0.02,0.015,0.02,0.1"
         weights = st.text_input("Inserisci 9 pesi per ciasuni dei criteri", default_weights)
         #weights = st.text_input("Enter 9 weight values separated by comma ex. 0.46,0.13,0.11,0.13,0.02,0.02,0.015,0.02,0.1", "")

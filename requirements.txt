@@ -1,2 +1,2 @@
 pymcdm
-ploty
+plotly==5.19.0

@@ -15,7 +15,15 @@ from pymcdm.helpers import rankdata, rrankdata
 # along with a DataFrame and returns some result. You need to adjust this according to your actual code.
 # from computational_code import run_computation
 
+from io import StringIO
 
+# Assuming df_sorted is your DataFrame
+
+# Convert DataFrame to CSV for download
+def convert_df_to_csv(df):
+    csv_buffer = StringIO()
+    df.to_csv(csv_buffer, index=False)
+    return csv_buffer.getvalue()
 
 def run_computation(weight_list, value_list, df):
     weights_geco=np.array(weight_list)
